@@ -26,7 +26,6 @@ String sendData(String command, const int timeout, boolean debug) {
   {
     Serial.print(response);
   }
-
   return response;
 }
 
@@ -62,7 +61,7 @@ void loop() {
   i++;
   //creando la peticon mediante comandos AT
 //  inicio la peticion
-  dbg.println("Conexion: "+i);
+  dbg.println("Conexion: "+i+"\r\n");
   String req="AT+CIPSTART=\"TCP\",\""+ip+"\",80\r\n"; //conectar con la ip
   sendData(req, 1000, DEBUG);
   String httpreq="GET http://juliomxmx.sytes.net/tecnolightweb/prueba.php\r\n";
@@ -71,6 +70,6 @@ void loop() {
   cmd += "\r\n";
   sendData(cmd, 1000, DEBUG);
   sendData(httpreq, 1000, DEBUG);
-  sendData("AT+CIPCLOSE\r\n", 1000, DEBUG);//cierro la conexion
+  sendData("AT+CIPCLOSE\r\n", 1300, DEBUG);//cierro la conexion y espero un tiempo
 }
 
